@@ -1,0 +1,7 @@
+---
+hypnotoad:
+  listen: [ 'http://0.0.0.0:9007' ]
+
+essi:
+  user: root
+  group: root
