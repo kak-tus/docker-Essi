@@ -4,8 +4,9 @@ MAINTAINER Andrey Kuzmin "kak-tus@mail.ru"
 
 COPY docker.yml /etc/essi.d/docker.yml
 
-RUN apt update \
-  && apt install -y curl git libcommon-sense-perl build-essential \
+RUN apt-get update \
+  && apt-get install --no-install-recommends --no-install-suggests -y \
+  curl git libcommon-sense-perl build-essential \
   libextutils-makemaker-cpanfile-perl dh-make-perl apt-file \
 
   && cd /bin \
@@ -17,7 +18,9 @@ RUN apt update \
   && cpanm https://github.com/iph0/App-Environ.git \
 
   && apt-file update \
-  && cpanm https://github.com/kak-tus/Essi.git
+  && cpanm https://github.com/kak-tus/Essi.git \
+
+  && rm -rf /var/lib/apt/lists/*
 
 EXPOSE 9007
 

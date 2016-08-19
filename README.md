@@ -2,6 +2,14 @@
 
 [Essi](https://github.com/kak-tus/Essi) - automated perl to deb converter.
 
+## How to use this image
+
+```
+$ docker run -d --name essi -p 9007:9007 -v /data/:/data/ kaktuss/essi
+```
+
+Then you can call api at http://localhost:9007/ or at http://host-ip:9007/. After build complete, *.deb and other files will be placed in /data folder.
+
 ## Github/gitlab API
 
 ```
