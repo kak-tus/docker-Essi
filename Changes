@@ -1,3 +1,6 @@
+0.6 2016-08-20
+  - ssh-client package to clone ssh repos
+
 0.5 2016-08-20
   - Smaller image size
   - Idempotency install (clone from github with specified tag)

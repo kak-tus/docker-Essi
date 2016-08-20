@@ -7,7 +7,7 @@ COPY docker.yml /etc/essi.d/docker.yml
 RUN apt-get update \
   && apt-get install --no-install-recommends --no-install-suggests -y \
   curl git libcommon-sense-perl build-essential \
-  libextutils-makemaker-cpanfile-perl dh-make-perl apt-file \
+  libextutils-makemaker-cpanfile-perl dh-make-perl apt-file ssh-client \
 
   && cd /bin \
   && curl -L https://cpanmin.us/ -o cpanm \
