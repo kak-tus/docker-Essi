@@ -10,6 +10,17 @@ $ docker run -d --name essi -p 9007:9007 -v /data/:/data/ kaktuss/essi
 
 Then you can call api at http://localhost:9007/ or at http://host-ip:9007/. After build complete, *.deb and other files will be placed in /data folder.
 
+## Configuration
+
+ESSI_DEB_PATH - used to set path to store deb packages.
+
+This can be needed if we using (as example) Hashicorp Nomad. Nomad creates path, that can be used to communicate between tasks in task groups. Example:
+
+```
+$ docker run -d --name essi -p 9007:9007 -e 'ESSI_DEB_PATH=/alloc/data' kaktuss/essi
+```
+
+
 ## Github/gitlab API
 
 ```

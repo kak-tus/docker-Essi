@@ -4,6 +4,8 @@ MAINTAINER Andrey Kuzmin "kak-tus@mail.ru"
 
 COPY docker.yml /etc/essi.d/docker.yml
 
+ENV ESSI_DEB_PATH=
+
 RUN apt-get update \
   && apt-get install --no-install-recommends --no-install-suggests -y \
   curl git libcommon-sense-perl build-essential \
@@ -18,7 +20,7 @@ RUN apt-get update \
   && cpanm https://github.com/iph0/App-Environ.git \
 
   && apt-file update \
-  && cpanm https://github.com/kak-tus/Essi.git@0.6 \
+  && cpanm https://github.com/kak-tus/Essi.git@0.7 \
   && (echo y;echo o conf prerequisites_policy follow;echo o conf commit)|cpan \
 
   && rm -rf /root/.cpanm \
