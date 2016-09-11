@@ -1,4 +1,7 @@
-0.9 2016-08-21
+0.10 2016-09-11
+  - 0.8 Essi release
+
+0.9 2016-09-10
   - 0.7 Essi release
   - env variable to set path to store debs
 

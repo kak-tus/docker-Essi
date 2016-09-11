@@ -20,7 +20,7 @@ RUN apt-get update \
   && cpanm https://github.com/iph0/App-Environ.git \
 
   && apt-file update \
-  && cpanm https://github.com/kak-tus/Essi.git@0.7 \
+  && cpanm https://github.com/kak-tus/Essi.git@0.8 \
   && (echo y;echo o conf prerequisites_policy follow;echo o conf commit)|cpan \
 
   && rm -rf /root/.cpanm \
