@@ -10,6 +10,7 @@ RUN apt-get update \
   && apt-get install --no-install-recommends --no-install-suggests -y \
   curl git libcommon-sense-perl build-essential \
   libextutils-makemaker-cpanfile-perl dh-make-perl apt-file ssh-client \
+  dnsutils \
 
   && cd /bin \
   && curl -L https://cpanmin.us/ -o cpanm \
