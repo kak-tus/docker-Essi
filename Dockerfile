@@ -10,7 +10,8 @@ RUN apt-get update \
   && apt-get install --no-install-recommends --no-install-suggests -y \
   curl git libcommon-sense-perl build-essential \
   libextutils-makemaker-cpanfile-perl dh-make-perl apt-file ssh-client \
-  dnsutils libanyevent-perl \
+  dnsutils libanyevent-perl libmodule-install-perl \
+  libmodule-install-xsutil-perl libmodule-install-authortests-perl \
 
   && cd /bin \
   && curl -L https://cpanmin.us/ -o cpanm \
@@ -19,9 +20,10 @@ RUN apt-get update \
   # Temporary fix, App::Environ not on cpan yet
   && cpanm Config::Processor \
   && cpanm https://github.com/iph0/App-Environ.git \
+  && cpanm Module::Install::TestTarget \
 
   && apt-file update \
-  && cpanm https://github.com/kak-tus/Essi.git@0.9 \
+  && cpanm https://github.com/kak-tus/Essi.git@0.10 \
   && (echo y;echo o conf prerequisites_policy follow;echo o conf commit)|cpan \
 
   && rm -rf /root/.cpanm \

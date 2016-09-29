@@ -1,3 +1,7 @@
+0.13 2016-09-11
+  - 0.10 Essi release
+  - Support for packages based on Module::Install
+
 0.12 2016-09-11
   - 0.9 Essi release
 
