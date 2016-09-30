@@ -11,7 +11,8 @@ RUN apt-get update \
   curl git libcommon-sense-perl build-essential \
   libextutils-makemaker-cpanfile-perl dh-make-perl apt-file ssh-client \
   dnsutils libanyevent-perl libmodule-install-perl \
-  libmodule-install-xsutil-perl libmodule-install-authortests-perl \
+  libmodule-install-xsutil-perl libmodule-install-authortests-perl
+  libmodule-build-xsutil-perl \
 
   && cd /bin \
   && curl -L https://cpanmin.us/ -o cpanm \
