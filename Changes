@@ -1,6 +1,9 @@
-0.15 2016-11-19
+0.16 2016-11-19
   - Essi 0.12
   - App::Environ already on cpan
+
+0.15 2016-10-01
+  - Essi 0.11
 
 0.14 2016-09-30
   - More support for Module::Build
