@@ -18,9 +18,6 @@ RUN apt-get update \
   && curl -L https://cpanmin.us/ -o cpanm \
   && chmod +x cpanm \
 
-  # Temporary fix, App::Environ not on cpan yet
-  && cpanm Config::Processor \
-  && cpanm https://github.com/iph0/App-Environ.git \
   && cpanm Module::Install::TestTarget \
 
   && apt-file update \
