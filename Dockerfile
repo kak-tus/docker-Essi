@@ -14,6 +14,10 @@ RUN apt-get update \
   libmodule-install-xsutil-perl libmodule-install-authortests-perl \
   libmodule-build-xsutil-perl \
 
+  # Build fixes for some modules
+  && apt-get install --no-install-recommends --no-install-suggests -y \
+  libclass-xsaccessor-perl \
+
   && cd /bin \
   && curl -L https://cpanmin.us/ -o cpanm \
   && chmod +x cpanm \
