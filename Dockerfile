@@ -25,7 +25,7 @@ RUN apt-get update \
   && cpanm Module::Install::TestTarget \
 
   && apt-file update \
-  && cpanm https://github.com/kak-tus/Essi.git@0.13 \
+  && cpanm https://github.com/kak-tus/Essi.git@0.14 \
   && (echo y;echo o conf prerequisites_policy follow;echo o conf commit)|cpan \
 
   && rm -rf /root/.cpanm \
