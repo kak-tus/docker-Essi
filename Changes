@@ -1,3 +1,6 @@
+0.22 2016-12-16
+  - Speedup start.
+
 0.21 2016-12-15
   - Essi 0.15.
   - Fix run in none root mode.

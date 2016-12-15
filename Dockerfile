@@ -3,7 +3,7 @@ FROM debian:8
 MAINTAINER Andrey Kuzmin "kak-tus@mail.ru"
 
 ENV ESSI_DEB_PATH=
-ENV GOSU_VERSION 1.10
+ENV GOSU_VERSION=1.10
 
 RUN apt-get update \
   && apt-get install --no-install-recommends --no-install-suggests -y \
@@ -29,6 +29,11 @@ RUN apt-get update \
   && dpkgArch="$(dpkg --print-architecture | awk -F- '{ print $NF }')" \
   && wget -O /usr/local/bin/gosu "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$dpkgArch" \
   && chmod +x /usr/local/bin/gosu \
+
+  && mkdir -p /home/www-data \
+  && chown www-data:www-data /home/www-data \
+  && usermod -d /home/www-data www-data \
+  && gosu www-data bash -c "( echo y ; echo 'manual' ; echo o conf prerequisites_policy follow ; echo o conf commit ) | cpan" \
 
   && rm -rf /root/.cpanm \
   && rm -rf /var/lib/apt/lists/*
