@@ -2,8 +2,6 @@ FROM debian:8
 
 MAINTAINER Andrey Kuzmin "kak-tus@mail.ru"
 
-COPY docker.yml /etc/essi.d/docker.yml
-
 ENV ESSI_DEB_PATH=
 
 RUN apt-get update \
@@ -33,4 +31,10 @@ RUN apt-get update \
 
 EXPOSE 9007
 
-CMD ["hypnotoad", "-f", "/usr/local/bin/essi.pl"]
+ENV USER_UID=1000
+ENV USER_GID=1000
+
+COPY docker.yml /etc/essi.d/docker.yml
+COPY start_essi.sh /usr/local/bin/start_essi.sh
+
+CMD /usr/local/bin/start_essi.sh

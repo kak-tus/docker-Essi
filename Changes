@@ -1,3 +1,6 @@
+0.20 2016-12-15
+  - Ability to set UID/GID for files.
+
 0.19 2016-11-21
   - Essi 0.14
 
