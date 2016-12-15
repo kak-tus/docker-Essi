@@ -1,3 +1,7 @@
+0.21 2016-12-15
+  - Essi 0.15.
+  - Fix run in none root mode.
+
 0.20 2016-12-15
   - Ability to set UID/GID for files.
 
