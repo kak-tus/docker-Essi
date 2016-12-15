@@ -3,6 +3,7 @@ FROM debian:8
 MAINTAINER Andrey Kuzmin "kak-tus@mail.ru"
 
 ENV ESSI_DEB_PATH=
+ENV GOSU_VERSION 1.10
 
 RUN apt-get update \
   && apt-get install --no-install-recommends --no-install-suggests -y \
@@ -10,7 +11,7 @@ RUN apt-get update \
   libextutils-makemaker-cpanfile-perl dh-make-perl apt-file ssh-client \
   dnsutils libanyevent-perl libmodule-install-perl \
   libmodule-install-xsutil-perl libmodule-install-authortests-perl \
-  libmodule-build-xsutil-perl \
+  libmodule-build-xsutil-perl ca-certificates wget \
 
   # Build fixes for some modules
   && apt-get install --no-install-recommends --no-install-suggests -y \
@@ -24,7 +25,10 @@ RUN apt-get update \
 
   && apt-file update \
   && cpanm https://github.com/kak-tus/Essi.git@0.14 \
-  && (echo y;echo o conf prerequisites_policy follow;echo o conf commit)|cpan \
+
+  && dpkgArch="$(dpkg --print-architecture | awk -F- '{ print $NF }')" \
+  && wget -O /usr/local/bin/gosu "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$dpkgArch" \
+  && chmod +x /usr/local/bin/gosu \
 
   && rm -rf /root/.cpanm \
   && rm -rf /var/lib/apt/lists/*
