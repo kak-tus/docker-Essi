@@ -24,7 +24,7 @@ RUN apt-get update \
   && cpanm Module::Install::TestTarget \
 
   && apt-file update \
-  && cpanm https://github.com/kak-tus/Essi.git@0.14 \
+  && cpanm https://github.com/kak-tus/Essi.git@0.15 \
 
   && dpkgArch="$(dpkg --print-architecture | awk -F- '{ print $NF }')" \
   && wget -O /usr/local/bin/gosu "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$dpkgArch" \
