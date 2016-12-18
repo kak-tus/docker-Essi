@@ -14,4 +14,8 @@ chown -R www-data:www-data /var/cache/apt/apt-file
 chown -R www-data:www-data /home/www-data
 export HOME=/home/www-data
 
-hypnotoad -f /usr/local/bin/essi.pl
+hypnotoad -f /usr/local/bin/essi.pl >/proc/1/fd/1 2>/proc/1/fd/2 &
+child=$!
+
+trap "kill $child" SIGTERM
+wait "$child"
