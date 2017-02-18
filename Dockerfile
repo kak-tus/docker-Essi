@@ -5,13 +5,15 @@ MAINTAINER Andrey Kuzmin "kak-tus@mail.ru"
 ENV ESSI_DEB_PATH=
 ENV GOSU_VERSION=1.10
 
-RUN apt-get update \
+RUN \
+  apt-get update \
   && apt-get install --no-install-recommends --no-install-suggests -y \
   curl git libcommon-sense-perl build-essential \
   libextutils-makemaker-cpanfile-perl dh-make-perl apt-file ssh-client \
   dnsutils libanyevent-perl libmodule-install-perl \
   libmodule-install-xsutil-perl libmodule-install-authortests-perl \
   libmodule-build-xsutil-perl ca-certificates wget \
+  libdata-validate-domain-perl \
 
   # Build fixes for some modules
   && apt-get install --no-install-recommends --no-install-suggests -y \
@@ -24,7 +26,7 @@ RUN apt-get update \
   && cpanm Module::Install::TestTarget \
 
   && apt-file update \
-  && cpanm https://github.com/kak-tus/Essi.git@0.19 \
+  && cpanm https://github.com/kak-tus/Essi.git@0.20 \
 
   && dpkgArch="$(dpkg --print-architecture | awk -F- '{ print $NF }')" \
   && wget -O /usr/local/bin/gosu "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$dpkgArch" \
