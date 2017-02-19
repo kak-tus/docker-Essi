@@ -48,4 +48,9 @@ ENV USER_GID=1000
 COPY docker.yml /etc/essi.d/docker.yml
 COPY start_essi.sh /usr/local/bin/start_essi.sh
 
+# Fix dh-make-perl cache bug
+# apt-file files have now new format, but latests versions of DhMakePerl from
+# cpan not working on debian 8 (different external utilities issues)
+COPY AptContents.pm /usr/share/perl5/Debian/AptContents.pm
+
 CMD /usr/local/bin/start_essi.sh
