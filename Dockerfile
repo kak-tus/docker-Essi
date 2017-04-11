@@ -1,9 +1,9 @@
 FROM debian:8
 
-MAINTAINER Andrey Kuzmin "kak-tus@mail.ru"
-
-ENV ESSI_DEB_PATH=
 ENV GOSU_VERSION=1.10
+ENV GOSU_SHA256=5b3b03713a888cee84ecbf4582b21ac9fd46c3d935ff2d7ea25dd5055d302d3c
+
+ENV CPANM_SHA256=d2221f1adb956591fa43cd61d0846b961be1fffa222210f097bfd472a11e0539
 
 RUN \
   apt-get update \
@@ -21,6 +21,7 @@ RUN \
 
   && cd /bin \
   && curl -L https://cpanmin.us/ -o cpanm \
+  && echo -n "$CPANM_SHA256  cpanm" | sha256sum -c - \
   && chmod +x cpanm \
 
   && cpanm Module::Install::TestTarget \
@@ -29,7 +30,8 @@ RUN \
   && cpanm https://github.com/kak-tus/Essi.git@0.20 \
 
   && dpkgArch="$(dpkg --print-architecture | awk -F- '{ print $NF }')" \
-  && wget -O /usr/local/bin/gosu "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$dpkgArch" \
+  && curl -L "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$dpkgArch" -o /usr/local/bin/gosu \
+  && echo -n "$GOSU_SHA256  /usr/local/bin/gosu" | sha256sum -c - \
   && chmod +x /usr/local/bin/gosu \
 
   && mkdir -p /home/www-data \
@@ -53,4 +55,6 @@ COPY start_essi.sh /usr/local/bin/start_essi.sh
 # cpan not working on debian 8 (different external utilities issues)
 COPY AptContents.pm /usr/share/perl5/Debian/AptContents.pm
 
-CMD /usr/local/bin/start_essi.sh
+ENV ESSI_DEB_PATH=
+
+CMD ["/usr/local/bin/start_essi.sh"]

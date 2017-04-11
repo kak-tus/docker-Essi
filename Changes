@@ -1,3 +1,7 @@
+0.31 2017-04-12
+  - CMD in exec form.
+  - Small fixes.
+
 0.30 2017-02-18
   - Fix dh-make-perl cache bug.
 
